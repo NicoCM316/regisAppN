@@ -10,10 +10,18 @@ export class AuthService {
   private readonly AUTH_KEY = 'isAuthenticated';
 
   // Usuario de prueba
-  private testUser = {
-    username: 'email',
-    password: '12345'
-  };
+  private testUsers = [
+    {
+      username: 'estudiante',
+      password: '12345',
+      role: 'user' // Usuario normal
+    },
+    {
+      username: 'profesor',
+      password: '12345',
+      role: 'teacher' // Profesor
+    }
+  ];
 
   constructor(private router: Router, private storage: Storage) {
     this.init();
@@ -24,13 +32,22 @@ export class AuthService {
   }
 
   async login(username: string, password: string): Promise<boolean> {
-    // Aquí puedes validar con datos fijos (ej., un usuario de prueba)
-    if (username === 'email' && password === '12345') {
+    const foundUser = this.testUsers.find(user => user.username === username && user.password === password);
+    if (foundUser) {
       this.isAuthenticated = true;
       await this.storage.set(this.AUTH_KEY, true);
+      await this.storage.set('role', foundUser.role); // Almacena el rol del usuario encontrado
+      
+      // Redirigir según el rol
+      if (foundUser.role === 'teacher') {
+        this.router.navigate(['/home-teacher']); // Navega a la página del profesor
+      } else {
+        this.router.navigate(['/home-student']); // Navega a la página del estudiante
+      }
+      
       return true;
     }
-    return false;
+    return false; // Credenciales inválidas
   }
 
   async logout() {

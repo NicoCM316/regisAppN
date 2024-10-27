@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular'; // Importa Storage
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-home-student',
+  templateUrl: './home-student.page.html',
+  styleUrls: ['./home-student.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomeStudentPage implements OnInit {
   username: string = '';
 
   constructor(private authService: AuthService, private router: Router, private storage: Storage) {}
@@ -26,5 +26,4 @@ export class HomePage implements OnInit {
     this.authService.logout();
   }
 }
-
 
