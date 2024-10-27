@@ -1,10 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="tertiary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">Cerrar sesión</ion-button>
     </ion-buttons>
-    <ion-title>Bienvenido</ion-title>
+    <ion-title>Bienvenido, {{ username }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> </ion-content>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-button color="tertiary">Generar QR o Escanear QR</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

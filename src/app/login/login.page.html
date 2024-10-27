@@ -6,21 +6,23 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
+    <ion-card-header>
+      <ion-card-title>Iniciar sesión</ion-card-title>
+    </ion-card-header>
     <ion-card-content>
-      <ion-card-title>Ingrese sus credenciales</ion-card-title>
-      <form>
+      <form (submit)="onSubmit()">
         <ion-item>
           <ion-label position="floating">Email</ion-label>
-          <br />
-          <ion-input type="text"></ion-input>
+          <br>
+          <ion-input [(ngModel)]="username" name="username" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <br />
-          <ion-input type="password"></ion-input>
+          <br>
+          <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
         </ion-item>
-        <br />
-        <ion-button color="tertiary" routerLink="/home">Entrar</ion-button>
+        <br>
+        <ion-button expand="full" type="submit" color="tertiary">Entrar</ion-button>
       </form>
     </ion-card-content>
   </ion-card>
