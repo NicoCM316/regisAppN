@@ -20,7 +20,7 @@ export class LoginPage {
     const success = await this.authService.login(this.username, this.password);
     if (success) {
       await this.storage.set('username', this.username); // Guarda el nombre de usuario
-      this.router.navigate(['/home']); // Navega a la pantalla de inicio
+      // this.router.navigate(['/home']); // Navega a la pantalla de inicio
     } else {
       alert('Email o contraseña incorrectos');
     }

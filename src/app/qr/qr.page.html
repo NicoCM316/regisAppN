@@ -1,0 +1,12 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Escanea el QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+<ion-content [fullscreen]="true">
+  <qrcode [qrdata]="'HOLA'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+</ion-content>

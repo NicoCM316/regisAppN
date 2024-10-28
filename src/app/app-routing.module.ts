@@ -23,7 +23,11 @@ const routes: Routes = [
   {
     path: 'home-teacher',
     loadChildren: () => import('./home-teacher/home-teacher.module').then( m => m.HomeTeacherPageModule)
+  },  {
+    path: 'qr',
+    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
   },
+
 ];
 
 @NgModule({

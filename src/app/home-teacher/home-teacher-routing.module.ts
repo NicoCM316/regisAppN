@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomeTeacherPage
-  }
+  },
+  {
+    path: 'qr',
+    loadChildren: () => import('../qr/qr.module').then( m => m.QrPageModule)
+  },
 ];
 
 @NgModule({
