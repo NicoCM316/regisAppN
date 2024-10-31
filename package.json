@@ -31,6 +31,7 @@
     "angularx-qrcode": "^18.0.2",
     "cordova-sqlite-storage": "^6.1.0",
     "ionicons": "^7.0.0",
+    "ngx-scanner-qrcode": "^1.6.9",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
