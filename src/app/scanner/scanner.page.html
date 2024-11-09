@@ -6,8 +6,10 @@
     <ion-title>Escaner QR</ion-title>
   </ion-toolbar>
 </ion-header>
-<br>
+
 <ion-content [fullscreen]="true">
+  <ion-card>
   <ngx-scanner-qrcode #action="scanner"></ngx-scanner-qrcode>
-  <ion-button (click)="action.isStart ? action.stop() : action.start()" color="tertiary">{{action.isStart ? 'Stop' : 'Start'}}</ion-button>
+  <ion-button (click)="action.isStart ? action.stop() : action.start()" color="tertiary">{{action.isStart ? 'DESACTIVAR CAMARA' : 'ACTIVAR CAMARA'}}</ion-button>
+  </ion-card>
 </ion-content>

@@ -6,7 +6,9 @@
     <ion-title>Escanea el QR</ion-title>
   </ion-toolbar>
 </ion-header>
-<br>
+
 <ion-content [fullscreen]="true">
+  <ion-card>
   <qrcode [qrdata]="'HOLA'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+  </ion-card>
 </ion-content>
