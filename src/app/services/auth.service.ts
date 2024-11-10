@@ -19,7 +19,7 @@ export class AuthService {
     {
       username: 'profesor',
       password: '12345',
-      role: 'teacher' // Profesor
+      role: 'teacher' // Profesor 
     }
   ];
 
@@ -32,23 +32,41 @@ export class AuthService {
   }
 
   async login(username: string, password: string): Promise<boolean> {
-    const foundUser = this.testUsers.find(user => user.username === username && user.password === password);
-    if (foundUser) {
+  try {
+    const resp = await fetch('http://presenteprofe.cl/api/v1/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        correo: username,
+        password
+      })
+    });
+
+    const { data, auth } = await resp.json();
+
+    if (resp.ok && auth.token) {  // Verificar que la respuesta sea exitosa
+      const role = data.perfil;
       this.isAuthenticated = true;
       await this.storage.set(this.AUTH_KEY, true);
-      await this.storage.set('role', foundUser.role); // Almacena el rol del usuario encontrado
-      
-      // Redirigir según el rol
-      if (foundUser.role === 'teacher') {
-        this.router.navigate(['/home-teacher']); // Navega a la página del profesor
-      } else {
-        this.router.navigate(['/home-student']); // Navega a la página del estudiante
+      await this.storage.set('role', role);
+
+      if (role === 'estudiante') {
+        this.router.navigate(['/home-student']);
+      } else if (role === 'docente') {
+        this.router.navigate(['/home-teacher']);
       }
-      
       return true;
+    } else {
+      console.log('Credenciales inválidas o error en la API');
+      return false;
     }
-    return false; // Credenciales inválidas
+  } catch (error) {
+    console.error('Error al hacer login', error);
+    return false;
   }
+}
 
   async logout() {
     this.isAuthenticated = false;

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,18 +19,23 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'home-student',
-    loadChildren: () => import('./home-student/home-student.module').then( m => m.HomeStudentPageModule)
+    loadChildren: () => import('./home-student/home-student.module').then( m => m.HomeStudentPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'home-teacher',
-    loadChildren: () => import('./home-teacher/home-teacher.module').then( m => m.HomeTeacherPageModule)
-  },  {
+    loadChildren: () => import('./home-teacher/home-teacher.module').then( m => m.HomeTeacherPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'qr',
-    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
+    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'scanner',
-    loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
+    loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule),
+    canActivate: [AuthGuard]
   },
 
 ];
