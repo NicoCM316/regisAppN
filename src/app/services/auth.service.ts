@@ -48,9 +48,11 @@ export class AuthService {
 
     if (resp.ok && auth.token) {  // Verificar que la respuesta sea exitosa
       const role = data.perfil;
+      const username = data.nombre + " " + data.apellido;
       this.isAuthenticated = true;
       await this.storage.set(this.AUTH_KEY, true);
       await this.storage.set('role', role);
+      await this.storage.set('username', username);
 
       if (role === 'estudiante') {
         this.router.navigate(['/home-student']);
